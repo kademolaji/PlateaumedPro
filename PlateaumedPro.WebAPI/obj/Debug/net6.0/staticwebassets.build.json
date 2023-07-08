@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9ooQBW16k7tnhqQlDiPVLTQhkmAwn4gx4MGwMwtitWI=",
+  "Source": "PlateaumedPro.WebAPI",
+  "BasePath": "_content/PlateaumedPro.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
