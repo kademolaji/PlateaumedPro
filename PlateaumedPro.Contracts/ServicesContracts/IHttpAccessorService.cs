@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlateaumedPro.Contracts.ServicesContracts
+namespace PlateaumedPro.Contracts
 {
     public interface IHttpAccessorService
     {
+        String GetClientIP();
+        String GetHostAddress();
     }
 }

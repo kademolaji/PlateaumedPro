@@ -1,0 +1,17 @@
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Contracts.deps.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Contracts.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Contracts.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Common.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\PlateaumedPro.Domain.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.csproj.AssemblyReference.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.AssemblyInfoInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.AssemblyInfo.cs
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.csproj.CoreCompileInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.csproj.CopyComplete
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\refint\PlateaumedPro.Contracts.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\ref\PlateaumedPro.Contracts.dll

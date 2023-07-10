@@ -1,0 +1,5 @@
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Services\obj\Debug\net6.0\PlateaumedPro.Services.csproj.AssemblyReference.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Services\obj\Debug\net6.0\PlateaumedPro.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Services\obj\Debug\net6.0\PlateaumedPro.Services.AssemblyInfoInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Services\obj\Debug\net6.0\PlateaumedPro.Services.AssemblyInfo.cs
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Services\obj\Debug\net6.0\PlateaumedPro.Services.csproj.CoreCompileInputs.cache

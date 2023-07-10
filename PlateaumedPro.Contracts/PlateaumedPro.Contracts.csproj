@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PlateaumedPro.Common\PlateaumedPro.Common.csproj" />
     <ProjectReference Include="..\PlateaumedPro.Domain\PlateaumedPro.Domain.csproj" />
   </ItemGroup>
 

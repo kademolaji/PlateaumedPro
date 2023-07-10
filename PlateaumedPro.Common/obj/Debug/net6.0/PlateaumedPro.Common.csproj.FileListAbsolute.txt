@@ -1,0 +1,12 @@
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\bin\Debug\net6.0\PlateaumedPro.Common.deps.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\bin\Debug\net6.0\PlateaumedPro.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\bin\Debug\net6.0\PlateaumedPro.Common.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.csproj.AssemblyReference.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.AssemblyInfoInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.AssemblyInfo.cs
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.csproj.CoreCompileInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\refint\PlateaumedPro.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\PlateaumedPro.Common.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Common\obj\Debug\net6.0\ref\PlateaumedPro.Common.dll

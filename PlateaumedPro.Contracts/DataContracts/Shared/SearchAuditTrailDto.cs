@@ -1,11 +1,11 @@
-﻿using PlateaumedPro.Domain.Entities;
+﻿using PlateaumedPro.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlateaumedPro.Contracts.DataContracts.Shared
+namespace PlateaumedPro.Contracts
 {
     public class SearchAuditTrailDto
     {

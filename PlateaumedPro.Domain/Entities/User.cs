@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace PlateaumedPro.Domain.Entities
+namespace PlateaumedPro.Domain
 {
     public class User
     {

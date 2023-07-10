@@ -332,6 +332,16 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "PlateaumedPro.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PlateaumedPro.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlateaumedPro.Common.dll": {}
+        }
+      },
       "PlateaumedPro.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -763,6 +773,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "PlateaumedPro.Common/1.0.0": {
+      "type": "project",
+      "path": "../PlateaumedPro.Common/PlateaumedPro.Common.csproj",
+      "msbuildProject": "../PlateaumedPro.Common/PlateaumedPro.Common.csproj"
+    },
     "PlateaumedPro.Domain/1.0.0": {
       "type": "project",
       "path": "../PlateaumedPro.Domain/PlateaumedPro.Domain.csproj",
@@ -771,6 +786,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "PlateaumedPro.Common >= 1.0.0",
       "PlateaumedPro.Domain >= 1.0.0"
     ]
   },
@@ -801,6 +817,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj": {
+              "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj"
+            },
             "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj": {
               "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj"
             }

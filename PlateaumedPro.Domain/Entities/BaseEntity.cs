@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlateaumedPro.Domain.Entities
+namespace PlateaumedPro.Domain
 {
     public class BaseEntity<TPrimaryKey>
     {

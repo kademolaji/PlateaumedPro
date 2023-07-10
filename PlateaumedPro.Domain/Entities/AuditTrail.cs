@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PlateaumedPro.Domain.Entities
+namespace PlateaumedPro.Domain
 {
     public partial class AuditTrail : BaseEntity<long>
     {
