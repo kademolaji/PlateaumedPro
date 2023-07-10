@@ -12,3 +12,5 @@ C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\refint\Plateaume
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.pdb
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.genruntimeconfig.cache
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\ref\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\appsettings.Development.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\appsettings.json

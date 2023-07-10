@@ -43,3 +43,16 @@ C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Do
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Contracts.pdb
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Common.pdb
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Domain.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\EPPlus.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Services.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.WebAPI\bin\Debug\net6.0\PlateaumedPro.Services.pdb

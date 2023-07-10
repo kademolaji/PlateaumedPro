@@ -15,3 +15,5 @@ C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\refint\PlateaumedPro.Contracts.dll
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\PlateaumedPro.Contracts.pdb
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\obj\Debug\net6.0\ref\PlateaumedPro.Contracts.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\appsettings.Development.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Contracts\bin\Debug\net6.0\appsettings.json

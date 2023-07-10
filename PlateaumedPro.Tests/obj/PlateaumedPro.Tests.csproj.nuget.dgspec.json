@@ -4,14 +4,14 @@
     "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj": {}
   },
   "projects": {
-    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj": {
+    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj",
-        "projectName": "PlateaumedPro.Tests",
-        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj",
+        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj",
+        "projectName": "PlateaumedPro.Common",
+        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\obj\\",
+        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,9 +40,314 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NLog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.3.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj",
+        "projectName": "PlateaumedPro.Contracts",
+        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj"
+              },
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj",
+        "projectName": "PlateaumedPro.Domain",
+        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\PlateaumedPro.Domain.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\PlateaumedPro.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\PlateaumedPro.Services.csproj",
+        "projectName": "PlateaumedPro.Services",
+        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\PlateaumedPro.Services.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Common\\PlateaumedPro.Common.csproj"
+              },
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj",
+        "projectName": "PlateaumedPro.Tests",
+        "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\PlateaumedPro.Tests.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Contracts\\PlateaumedPro.Contracts.csproj"
+              },
+              "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\PlateaumedPro.Services.csproj": {
+                "projectPath": "C:\\PERSONAL\\PlateaumedPro\\PlateaumedPro.Services\\PlateaumedPro.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.0, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

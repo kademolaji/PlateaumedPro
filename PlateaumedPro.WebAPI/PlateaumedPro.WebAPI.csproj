@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PlateaumedPro.Contracts\PlateaumedPro.Contracts.csproj" />
+    <ProjectReference Include="..\PlateaumedPro.Services\PlateaumedPro.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -26,8 +26,8 @@ namespace PlateaumedPro.Services
                     Details = details,
                     ActionDate = DateTime.UtcNow,
                     ActionBy = createdBy ?? null,
-                    IPAddress = httpAccessorService.GetClientIP() ?? null,
-                    HostAddress = httpAccessorService.GetHostAddress() ?? null,
+                    IPAddress = httpAccessorService?.GetClientIP() ?? null,
+                    HostAddress = httpAccessorService?.GetHostAddress() ?? null,
                     Endpoint = endpoint,
                     ActionType = actionType,
                 };
