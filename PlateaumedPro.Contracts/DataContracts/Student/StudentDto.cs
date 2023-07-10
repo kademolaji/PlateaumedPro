@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace PlateaumedPro.Contracts
 {
-    public class StudentDto: BaseDto<long>
+    public class StudentDto
     {
+        [Required]
+        public long Id { get; set; }
         [Required]
         public string NationalIDNumber { get; set; }
         [Required]

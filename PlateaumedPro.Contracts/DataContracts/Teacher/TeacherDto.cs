@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace PlateaumedPro.Contracts
 {
-    public class TeacherDto : BaseDto<long>
+    public class TeacherDto 
     {
+        [Required]
+        public long Id { get; set; }
         [Required]
         public string NationalIDNumber { get; set; }
         [Required]

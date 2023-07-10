@@ -15,6 +15,7 @@ namespace PlateaumedPro.WebAPI
 
             // Configure DI for application services
             services.AddScoped<IStudentService, StudentServices>();
+            services.AddScoped<ITeacherService, TeacherServices>();
             services.AddScoped<IAuditTrailService, AuditTrailService>();
             services.AddScoped<IHttpAccessorService, HttpAccessorService>();
             services.AddScoped<IBasicAuthService, BasicAuthService>();

@@ -26,12 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PlateaumedPro.Contracts\PlateaumedPro.Contracts.csproj" />
     <ProjectReference Include="..\PlateaumedPro.Services\PlateaumedPro.Services.csproj" />
+    <ProjectReference Include="..\PlateaumedPro.WebAPI\PlateaumedPro.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,10 +11,10 @@ namespace PlateaumedPro.Domain
         public BaseEntity()
         {
             IsDeleted = false;
-            CreatedOn = DateTimeOffset.Now;
+            CreatedOn = DateTime.UtcNow;
         }
         public TPrimaryKey Id { get; set; }
-        public DateTimeOffset CreatedOn { get; set; } = DateTimeOffset.Now;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public bool IsDeleted { get; set; }
     }
 }

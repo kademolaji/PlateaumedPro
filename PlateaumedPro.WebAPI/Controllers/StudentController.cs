@@ -9,7 +9,6 @@ namespace PlateaumedPro.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ApiKey]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _service;
