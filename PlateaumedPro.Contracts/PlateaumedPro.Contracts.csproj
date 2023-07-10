@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataContracts\Teacher\" />
+    <Folder Include="DataContracts\Student\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlateaumedPro.Domain\PlateaumedPro.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
