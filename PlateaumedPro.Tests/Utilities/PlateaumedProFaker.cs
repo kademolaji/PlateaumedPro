@@ -80,7 +80,7 @@ namespace PlateaumedPro.Tests.Utilities
                 NationalIDNumber = "ERT1123",
                 Name =  "John",
                 Surname =  "Doe",
-                DateOfBirth =  Convert.ToDateTime("01/02/2012"),
+                DateOfBirth =  Convert.ToDateTime("01/02/1992"),
                 TeacherNumber =  "202301",
                 Title = "Head Teacher",
                 Salary = 500000
