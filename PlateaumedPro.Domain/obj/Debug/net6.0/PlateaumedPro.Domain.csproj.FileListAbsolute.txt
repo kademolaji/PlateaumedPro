@@ -3,3 +3,14 @@ C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Do
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.AssemblyInfoInputs.cache
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.AssemblyInfo.cs
 C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.csproj.CoreCompileInputs.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\PlateaumedPro.Domain.deps.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\PlateaumedPro.Domain.runtimeconfig.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\PlateaumedPro.Domain.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\refint\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.pdb
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\PlateaumedPro.Domain.genruntimeconfig.cache
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\obj\Debug\net6.0\ref\PlateaumedPro.Domain.dll
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\appsettings.Development.json
+C:\PERSONAL\PlateaumedPro\PlateaumedPro.Domain\bin\Debug\net6.0\appsettings.json

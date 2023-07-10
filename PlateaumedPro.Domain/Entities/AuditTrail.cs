@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PlateaumedPro.Domain.Entities
+namespace PlateaumedPro.Domain
 {
     public partial class AuditTrail : BaseEntity<long>
     {
@@ -35,5 +35,14 @@ namespace PlateaumedPro.Domain.Entities
        * Delete Action Type
        */
         Deleted = 3,
+        /*
+      * Delete Action Type
+      */
+        Download = 4,
+        /*
+              * Upload Action Type
+              */
+
+        Upload = 5
     }
 }
