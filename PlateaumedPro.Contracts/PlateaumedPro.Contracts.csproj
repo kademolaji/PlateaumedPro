@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataContracts\Teacher\" />
-    <Folder Include="DataContracts\Student\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PlateaumedPro.Common\PlateaumedPro.Common.csproj" />
     <ProjectReference Include="..\PlateaumedPro.Domain\PlateaumedPro.Domain.csproj" />
   </ItemGroup>
