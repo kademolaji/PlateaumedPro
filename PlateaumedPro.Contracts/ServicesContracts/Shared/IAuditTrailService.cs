@@ -7,7 +7,7 @@ namespace PlateaumedPro.Contracts
 {
     public interface IAuditTrailService
     {
-        void SaveAuditTrail(string details, string endpoint, ActionType actionType, string createdBy);
+        Task SaveAuditTrail(string details, string endpoint, ActionType actionType, string createdBy);
         Task<ApiResponse<SearchReply<SearchAuditTrailDto>>> SearchAuditTrail(SearchCall<string> options);
     }
 }

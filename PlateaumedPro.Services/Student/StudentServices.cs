@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using PlateaumedPro.Common;
 using PlateaumedPro.Contracts;
 using PlateaumedPro.Domain;
@@ -22,54 +23,53 @@ namespace PlateaumedPro.Services
             this.auditTrail = _auditTrail;
         }
 
-        public async Task<ApiResponse<CreateResponse>> Create(StructureDefinitionModel model)
+        public async Task<ApiResponse<CreateResponse>> CreateStudent(StudentDto model)
         {
             try
             {
 
-                if (model.StructureDefinitionId > 0)
+                if (model.Id > 0)
                 {
                     return await Update(model);
                 }
-                if (string.IsNullOrEmpty(model.Definition))
+                if (string.IsNullOrEmpty(model.NationalIDNumber))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Definition is required." }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "NationalIDNumber is required." }, IsSuccess = false };
                 }
-                if (model.Level <= 0)
+                if (string.IsNullOrEmpty(model.Name))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Level cannot be less than or equal to Zero." }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Name is required." }, IsSuccess = false };
                 }
-                if (model.ClientId <= 0)
+                if (string.IsNullOrEmpty(model.Surname))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Request is not coming from a valid client" }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Surname is required." }, IsSuccess = false };
                 }
-                var isLevelExist = await context.StructureDefinitions.AnyAsync(x => x.Level == model.Level && x.ClientId == model.ClientId);
+                //TODO: Date should consider leap year
+                if ((DateTime.Now.Year - model.DateOfBirth.Year) > 22)
+                {
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Age cannot be greater than 22" }, IsSuccess = false };
+                }
+                var isExist = await context.Students.AnyAsync(x => x.NationalIDNumber == model.NationalIDNumber );
 
-                if (isLevelExist)
-                {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"Level {model.Level} already exist." }, IsSuccess = false };
-                }
-
-                var isExist = await context.StructureDefinitions.AnyAsync(x => x.Definition == model.Definition && x.ClientId == model.ClientId);
                 if (isExist)
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"{model.Definition} already exist." }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"NationalIDNumber {model.NationalIDNumber} already exist." }, IsSuccess = false };
                 }
 
                 var apiResponse = new ApiResponse<CreateResponse>();
                 bool result = false;
-                StructureDefinition entity = null;
+                Student entity = null;
                 using (var trans = context.Database.BeginTransaction())
                 {
                     try
                     {
-                        entity = model.ToModel<StructureDefinition>();
-                        context.StructureDefinitions.Add(entity);
+                        entity = model.ToModel<Student>();
+                        context.Students.Add(entity);
                         result = await context.SaveChangesAsync() > 0;
                         if (result)
                         {
-                            var details = $"Created new Structure Definition: Definition = {model.Definition}, Description = {model.Description}, Level = {model.Level} ";
-                            await auditTrail.SaveAuditTrail(details, "Structure Definition", "Create");
+                            var details = $"Created new Student: NationalIDNumber = {model.NationalIDNumber}, Name = {model.Name}, Surname = {model.Surname}, DateOfBirth = {model.DateOfBirth}, StudentNumber = {model.StudentNumber} ";
+                            await auditTrail.SaveAuditTrail(details, "Student", ActionType.Created, "");
                             trans.Commit();
                         }
                     }
@@ -83,7 +83,7 @@ namespace PlateaumedPro.Services
                 var response = new CreateResponse
                 {
                     Status = result,
-                    Id = entity.StructureDefinitionId,
+                    Id = entity.Id,
                     Message = "Record created successfully"
                 };
 
@@ -100,40 +100,41 @@ namespace PlateaumedPro.Services
             }
         }
 
-        public async Task<ApiResponse<CreateResponse>> Update(StructureDefinitionModel model)
+        public async Task<ApiResponse<CreateResponse>> Update(StudentDto model)
         {
             try
             {
 
 
-                if (string.IsNullOrEmpty(model.Definition))
+                if (string.IsNullOrEmpty(model.NationalIDNumber))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Definition is required." }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "NationalIDNumber is required." }, IsSuccess = false };
                 }
-                if (model.Level <= 0)
+                if (string.IsNullOrEmpty(model.Name))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Level cannot be less than or equal to Zero." }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Name is required." }, IsSuccess = false };
                 }
-                if (model.ClientId <= 0)
+                if (string.IsNullOrEmpty(model.Surname))
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Request is not coming from a valid client" }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Surname is required." }, IsSuccess = false };
+                }
+                //TODO: Date should consider leap year
+                if ((DateTime.Now.Year - model.DateOfBirth.Year) > 22)
+                {
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Age cannot be greater than 22" }, IsSuccess = false };
+                }
+                var isExist = await context.Students.AnyAsync(x => x.NationalIDNumber == model.NationalIDNumber && x.Id != model.Id);
+
+                if (isExist)
+                {
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"Another student with NationalIDNumber {model.NationalIDNumber} already exist." }, IsSuccess = false };
                 }
 
-                var existingDefinition = context.StructureDefinitions.Any(x => x.Definition == model.Definition && x.StructureDefinitionId != model.StructureDefinitionId && x.ClientId == model.ClientId);
-                if (existingDefinition)
-                {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Another Structure Definition already exists with the given definition" }, IsSuccess = false };
-                }
-                var isLevelExist = await context.StructureDefinitions.AnyAsync(x => x.Level == model.Level && x.StructureDefinitionId != model.StructureDefinitionId && x.ClientId == model.ClientId);
-
-                if (string.IsNullOrEmpty(model.Definition))
-                {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"Another Structure Definition already exists with the given level" }, IsSuccess = false };
-                }
+               
 
                 var apiResponse = new ApiResponse<CreateResponse>();
                 bool result = false;
-                var entity = await context.StructureDefinitions.FindAsync(model.StructureDefinitionId);
+                var entity = await context.Students.FindAsync(model.Id);
                 if (entity == null)
                 {
                     return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Record does not exist." }, IsSuccess = false };
@@ -142,14 +143,15 @@ namespace PlateaumedPro.Services
                 {
                     try
                     {
-                        entity.Level = model.Level;
-                        entity.Description = model.Description;
-
+                        entity.NationalIDNumber = model.NationalIDNumber;
+                        entity.Name = model.Name;
+                        entity.DateOfBirth = model.DateOfBirth;
+                        entity.Surname = model.Surname;
                         result = await context.SaveChangesAsync() > 0;
                         if (result)
                         {
-                            var details = $"Updated Structure Definition: Definition = {model.Definition}, Description = {model.Description}, Level = {model.Level} ";
-                            await auditTrail.SaveAuditTrail(details, "Structure Definition", "Update");
+                            var details = $"Updated Student: NationalIDNumber = {model.NationalIDNumber}, Name = {model.Name}, Surname = {model.Surname}, DateOfBirth = {model.DateOfBirth}, StudentNumber = {model.StudentNumber} ";
+                            await auditTrail.SaveAuditTrail(details, "Student", ActionType.Updated, "");
                             trans.Commit();
                         }
                     }
@@ -163,7 +165,7 @@ namespace PlateaumedPro.Services
                 var response = new CreateResponse
                 {
                     Status = result,
-                    Id = entity.StructureDefinitionId,
+                    Id = entity.Id,
                     Message = "Record updated successfully"
                 };
 
@@ -180,50 +182,58 @@ namespace PlateaumedPro.Services
             }
         }
 
-        public async Task<ApiResponse<SearchReply<StructureDefinitionModel>>> GetList(SearchCall<SearchParameter> options, long clientId)
+        public async Task<ApiResponse<SearchReply<StudentDto>>> GetStudentList(SearchCall<SearchParameter> options)
         {
             int count = 0;
             int pageNumber = options.From > 0 ? options.From : 0;
             int pageSize = options.PageSize > 0 ? options.PageSize : 10;
             string sortOrder = string.IsNullOrEmpty(options.SortOrder) ? "asc" : options.SortOrder;
-            string sortField = string.IsNullOrEmpty(options.SortField) ? "definition" : options.SortField;
+            string sortField = string.IsNullOrEmpty(options.SortField) ? "nationalIdNumber" : options.SortField;
 
             try
             {
-                var apiResponse = new ApiResponse<SearchReply<StructureDefinitionModel>>();
+                var apiResponse = new ApiResponse<SearchReply<StudentDto>>();
 
 
-                IQueryable<StructureDefinition> query = context.StructureDefinitions.Where(x => x.ClientId == clientId);
+                IQueryable<Student> query = context.Students;
                 int offset = (pageNumber) * pageSize;
 
                 if (!string.IsNullOrEmpty(options.Parameter.SearchQuery))
                 {
-                    query = query.Where(x => x.Definition.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower())
-                    || x.Description.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower()));
+                    query = query.Where(x => x.NationalIDNumber.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower())
+                   || x.Name.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower())
+                   || x.Surname.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower())
+                    || x.StudentNumber.Trim().ToLower().Contains(options.Parameter.SearchQuery.Trim().ToLower()));
                 }
                 switch (sortField)
                 {
-                    case "definition":
-                        query = sortOrder == "asc" ? query.OrderBy(s => s.Definition) : query.OrderByDescending(s => s.Definition);
+                    case "nationalIdNumber":
+                        query = sortOrder == "asc" ? query.OrderBy(s => s.NationalIDNumber) : query.OrderByDescending(s => s.NationalIDNumber);
                         break;
-                    case "description":
-                        query = sortOrder == "asc" ? query.OrderBy(s => s.Description) : query.OrderByDescending(s => s.Description);
+                    case "name":
+                        query = sortOrder == "asc" ? query.OrderBy(s => s.Name) : query.OrderByDescending(s => s.Name);
                         break;
-                    case "level":
-                        query = sortOrder == "asc" ? query.OrderBy(s => s.Level) : query.OrderByDescending(s => s.Level);
+                    case "surname":
+                        query = sortOrder == "asc" ? query.OrderBy(s => s.Surname) : query.OrderByDescending(s => s.Surname);
+                        break;
+                    case "studentNumber":
+                        query = sortOrder == "asc" ? query.OrderBy(s => s.StudentNumber) : query.OrderByDescending(s => s.StudentNumber);
+                        break;
+                    case "dateOfBirth":
+                        query = sortOrder == "asc" ? query.OrderBy(s => s.DateOfBirth) : query.OrderByDescending(s => s.DateOfBirth);
                         break;
                     default:
-                        query = query.OrderBy(s => s.Definition);
+                        query = query.OrderBy(s => s.NationalIDNumber);
                         break;
                 }
                 count = query.Count();
                 var items = await query.Skip(offset).Take(pageSize).ToListAsync();
 
 
-                var response = new SearchReply<StructureDefinitionModel>()
+                var response = new SearchReply<StudentDto>()
                 {
                     TotalCount = count,
-                    Result = items.Select(x => x.ToModel<StructureDefinitionModel>()).ToList(),
+                    Result = items.Select(x => x.ToModel<StudentDto>()).ToList(),
                 };
 
                 apiResponse.StatusCode = System.Net.HttpStatusCode.OK;
@@ -234,32 +244,32 @@ namespace PlateaumedPro.Services
             }
             catch (Exception ex)
             {
-                return new ApiResponse<SearchReply<StructureDefinitionModel>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new SearchReply<StructureDefinitionModel>() { TotalCount = count }, IsSuccess = false };
+                return new ApiResponse<SearchReply<StudentDto>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new SearchReply<StudentDto>() { TotalCount = count }, IsSuccess = false };
             }
         }
 
-        public async Task<ApiResponse<GetResponse<StructureDefinitionModel>>> Get(long structureDefinitionId, long clientId)
+        public async Task<ApiResponse<GetResponse<StudentDto>>> GetStudent(long studentId)
         {
             try
             {
-                if (structureDefinitionId <= 0)
+                if (studentId <= 0)
                 {
-                    return new ApiResponse<GetResponse<StructureDefinitionModel>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new GetResponse<StructureDefinitionModel> { Status = false, Entity = null, Message = "StructureDefinitionId is required." }, IsSuccess = false };
+                    return new ApiResponse<GetResponse<StudentDto>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new GetResponse<StudentDto> { Status = false, Entity = null, Message = "StudentId is required." }, IsSuccess = false };
                 }
 
-                var apiResponse = new ApiResponse<GetResponse<StructureDefinitionModel>>();
+                var apiResponse = new ApiResponse<GetResponse<StudentDto>>();
 
-                var result = await context.StructureDefinitions.FirstOrDefaultAsync(x => x.StructureDefinitionId == structureDefinitionId && x.ClientId == clientId);
+                var result = await context.Students.FirstOrDefaultAsync(x => x.Id == studentId);
 
                 if (result == null)
                 {
-                    return new ApiResponse<GetResponse<StructureDefinitionModel>>() { StatusCode = System.Net.HttpStatusCode.NotFound, ResponseType = new GetResponse<StructureDefinitionModel>() { Status = false, Message = "No record found" }, IsSuccess = false };
+                    return new ApiResponse<GetResponse<StudentDto>>() { StatusCode = System.Net.HttpStatusCode.NotFound, ResponseType = new GetResponse<StudentDto>() { Status = false, Message = "No record found" }, IsSuccess = false };
                 }
 
-                var response = new GetResponse<StructureDefinitionModel>()
+                var response = new GetResponse<StudentDto>()
                 {
                     Status = true,
-                    Entity = result.ToModel<StructureDefinitionModel>(),
+                    Entity = result.ToModel<StudentDto>(),
                     Message = ""
                 };
 
@@ -271,23 +281,23 @@ namespace PlateaumedPro.Services
             }
             catch (Exception ex)
             {
-                return new ApiResponse<GetResponse<StructureDefinitionModel>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new GetResponse<StructureDefinitionModel>() { Status = false, Message = $"Error encountered {ex.Message}" }, IsSuccess = false };
+                return new ApiResponse<GetResponse<StudentDto>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new GetResponse<StudentDto>() { Status = false, Message = $"Error encountered {ex.Message}" }, IsSuccess = false };
             }
         }
 
-        public async Task<ApiResponse<DeleteReply>> Delete(long structureDefinitionId)
+        public async Task<ApiResponse<DeleteReply>> DeleteStudent(long studentId)
         {
             try
             {
 
-                if (structureDefinitionId <= 0)
+                if (studentId <= 0)
                 {
-                    return new ApiResponse<DeleteReply>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new DeleteReply { Status = false, Message = "StructureDefinitionId is required." }, IsSuccess = false };
+                    return new ApiResponse<DeleteReply>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new DeleteReply { Status = false, Message = "StudentId is required." }, IsSuccess = false };
                 }
 
                 var apiResponse = new ApiResponse<DeleteReply>();
 
-                var result = context.StructureDefinitions.Find(structureDefinitionId);
+                var result = context.Students.Find(studentId);
 
                 if (result == null)
                 {
@@ -306,8 +316,8 @@ namespace PlateaumedPro.Services
                 apiResponse.IsSuccess = true;
                 apiResponse.ResponseType = response;
 
-                var details = $"Deleted Structure Definition: Definition = {result.Definition}, Description = {result.Description}, Level = {result.Level} ";
-                await auditTrail.SaveAuditTrail(details, "Structure Definition", "Delete");
+                var details = $"Deleted Student: NationalIDNumber = {result.NationalIDNumber}, Name = {result.Name}, Surname = {result.Surname}, DateOfBirth = {result.DateOfBirth}, StudentNumber = {result.StudentNumber} ";
+                await auditTrail.SaveAuditTrail(details, "Student", ActionType.Deleted, "");
 
                 return apiResponse;
             }
@@ -317,20 +327,20 @@ namespace PlateaumedPro.Services
             }
         }
 
-        public async Task<ApiResponse<DeleteReply>> MultipleDelete(MultipleDeleteModel model)
+        public async Task<ApiResponse<DeleteReply>> DeleteMultipleStudent(MultipleDeleteDto model)
         {
             try
             {
                 if (model.targetIds.Count <= 0)
                 {
-                    return new ApiResponse<DeleteReply>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new DeleteReply { Status = false, Message = "StructureDefinitionId is required." }, IsSuccess = false };
+                    return new ApiResponse<DeleteReply>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new DeleteReply { Status = false, Message = "StudentId is required." }, IsSuccess = false };
                 }
 
                 var apiResponse = new ApiResponse<DeleteReply>();
 
                 foreach (var item in model.targetIds)
                 {
-                    var data = await context.StructureDefinitions.FindAsync(item);
+                    var data = await context.Students.FindAsync(item);
                     if (data != null)
                     {
                         data.IsDeleted = true;
@@ -347,8 +357,8 @@ namespace PlateaumedPro.Services
                 apiResponse.IsSuccess = true;
                 apiResponse.ResponseType = response;
 
-                var details = $"Deleted Multiple Structure Definition: with Ids {model.targetIds.ToArray()} ";
-                await auditTrail.SaveAuditTrail(details, "Structure Definition", "Delete");
+                var details = $"Deleted Multiple Students: with Ids {model.targetIds.ToArray()} ";
+                await auditTrail.SaveAuditTrail(details, "Student", ActionType.Deleted ,"");
 
                 return apiResponse;
             }
@@ -358,46 +368,54 @@ namespace PlateaumedPro.Services
             }
         }
 
-        public async Task<ApiResponse<GetResponse<byte[]>>> Export(long clientId)
+        public async Task<ApiResponse<GetResponse<byte[]>>> ExportStudent()
         {
             try
             {
                 DataTable dt = new DataTable();
+                dt.Columns.Add("Id");
+                dt.Columns.Add("NationalIDNumber");
                 dt.Columns.Add("Name");
-                dt.Columns.Add("Description");
-                dt.Columns.Add("Level");
+                dt.Columns.Add("Surname");
+                dt.Columns.Add("DateOfBirth");
+                dt.Columns.Add("StudentNumber");
                 var apiResponse = new ApiResponse<GetResponse<byte[]>>();
 
-                var structures = await (from a in context.StructureDefinitions
-                                        where a.ClientId == clientId && a.IsDeleted == false
-                                        select new StructureDefinitionModel
+                var students = await (from a in context.Students
+                                        where  a.IsDeleted == false
+                                        select new StudentDto
                                         {
-                                            StructureDefinitionId = a.StructureDefinitionId,
-                                            Level = a.Level,
-                                            Definition = a.Definition,
-                                            Description = a.Description
+                                            Id = a.Id,
+                                            NationalIDNumber = a.NationalIDNumber,
+                                            Name = a.Name,
+                                            Surname = a.Surname,
+                                            DateOfBirth = a.DateOfBirth,
+                                            StudentNumber = a.StudentNumber,
                                         }).ToListAsync();
 
-                if (structures.Count == 0)
+                if (students.Count == 0)
                 {
                     return new ApiResponse<GetResponse<byte[]>>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new GetResponse<byte[]> { Status = false, Message = "No record found." }, IsSuccess = false };
                 }
-
-                foreach (var kk in structures)
+    
+                foreach (var kk in students)
                 {
                     var row = dt.NewRow();
-                    row["Name"] = kk.Definition;
-                    row["Description"] = kk.Description;
-                    row["Level"] = kk.Level;
+                    row["Id"] = kk.Id;
+                    row["NationalIDNumber"] = kk.NationalIDNumber;
+                    row["Name"] = kk.Name;
+                    row["Surname"] = kk.Surname;
+                    row["DateOfBirth"] = kk.DateOfBirth;
+                    row["StudentNumber"] = kk.StudentNumber;
                     dt.Rows.Add(row);
                 }
                 Byte[] fileBytes = null;
 
-                if (structures != null)
+                if (students != null)
                 {
                     using (ExcelPackage pck = new ExcelPackage())
                     {
-                        ExcelWorksheet ws = pck.Workbook.Worksheets.Add("StructureDifinition");
+                        ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Students");
                         ws.DefaultColWidth = 20;
                         ws.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.None);
                         fileBytes = pck.GetAsByteArray();
@@ -414,8 +432,8 @@ namespace PlateaumedPro.Services
                 apiResponse.IsSuccess = true;
                 apiResponse.ResponseType = response;
 
-                var details = $"Downloaded Structure Definition: TotalCount {structures.Count} ";
-                await auditTrail.SaveAuditTrail(details, "Structure Definition", "Download");
+                var details = $"Downloaded Students: TotalCount {students.Count} ";
+                await auditTrail.SaveAuditTrail(details, "Student", ActionType.Download, "");
 
                 return apiResponse;
             }
@@ -425,7 +443,7 @@ namespace PlateaumedPro.Services
             }
         }
 
-        public async Task<ApiResponse<CreateResponse>> Upload(byte[] record, long clientId)
+        public async Task<ApiResponse<CreateResponse>> UploadStudent(byte[] record)
         {
             try
             {
@@ -435,7 +453,7 @@ namespace PlateaumedPro.Services
                     return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Upload a valid record." }, IsSuccess = false };
                 }
 
-                List<StructureDefinitionModel> uploadedRecord = new List<StructureDefinitionModel>();
+                List<StudentDto> uploadedRecord = new List<StudentDto>();
 
                 using (MemoryStream stream = new MemoryStream(record))
                 using (ExcelPackage excelPackage = new ExcelPackage(stream))
@@ -446,56 +464,59 @@ namespace PlateaumedPro.Services
                     //First row is considered as the header
                     for (int i = 2; i <= totalRows; i++)
                     {
-                        uploadedRecord.Add(new StructureDefinitionModel
+                        uploadedRecord.Add(new StudentDto
                         {
-                            Definition = workSheet.Cells[i, 1].Value.ToString(),
-                            Description = workSheet.Cells[i, 2].Value.ToString(),
-                            Level = int.Parse(workSheet.Cells[i, 3].Value.ToString()),
+                            NationalIDNumber = workSheet.Cells[i, 1].Value.ToString(),
+                            Name = workSheet.Cells[i, 2].Value.ToString(),
+                            Surname = workSheet.Cells[i, 3].Value.ToString(),
+                            DateOfBirth = Convert.ToDateTime(workSheet.Cells[i, 4].Value),
+                            StudentNumber = workSheet.Cells[i, 5].Value.ToString(),
                         });
                     }
                 }
-                List<StructureDefinition> structures = new List<StructureDefinition>();
+                List<Student> structures = new List<Student>();
                 if (uploadedRecord.Count > 0)
                 {
 
                     foreach (var item in uploadedRecord)
                     {
-                        if (string.IsNullOrEmpty(item.Definition))
+                        if (string.IsNullOrEmpty(item.NationalIDNumber))
                         {
-                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Definition is required." }, IsSuccess = false };
+                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "NationalIDNumber is required." }, IsSuccess = false };
                         }
-                        if (item.Level <= 0)
+                        if (string.IsNullOrEmpty(item.Name))
                         {
-                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Level cannot be less than or equal to Zero." }, IsSuccess = false };
+                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Name is required." }, IsSuccess = false };
                         }
-                        if (clientId <= 0)
+                        if (string.IsNullOrEmpty(item.Surname))
                         {
-                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Request is not coming from a valid client" }, IsSuccess = false };
+                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Surname is required." }, IsSuccess = false };
                         }
-                        var isLevelExist = await context.StructureDefinitions.AnyAsync(x => x.Level == item.Level && x.ClientId == clientId);
+                        //TODO: Date should consider leap year
+                        if ((DateTime.Now.Year - item.DateOfBirth.Year) > 22)
+                        {
+                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Age cannot be greater than 22" }, IsSuccess = false };
+                        }
+                        var isExist = await context.Students.AnyAsync(x => x.NationalIDNumber == item.NationalIDNumber);
 
-                        if (isLevelExist)
-                        {
-                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"Level {item.Level} already exist." }, IsSuccess = false };
-                        }
-                        var isExist = await context.StructureDefinitions.AnyAsync(x => x.Definition == item.Definition && x.ClientId == clientId);
                         if (isExist)
                         {
-                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"{item.Definition} already exist." }, IsSuccess = false };
+                            return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = $"NationalIDNumber {item.NationalIDNumber} already exist." }, IsSuccess = false };
                         }
 
-                        var structure = new StructureDefinition
+                        var structure = new Student
                         {
-                            Definition = item.Definition,
-                            Description = item.Description,
-                            Level = item.Level,
+                            NationalIDNumber = item.NationalIDNumber,
+                            Name = item.Name,
+                            Surname = item.Surname,
+                            DateOfBirth = item.DateOfBirth,
+                            StudentNumber = item.StudentNumber,
                             IsDeleted = false,
                             CreatedOn = DateTime.UtcNow,
-                            ClientId = clientId,
                         };
                         structures.Add(structure);
                     }
-                    context.StructureDefinitions.AddRange(structures);
+                    context.Students.AddRange(structures);
                 }
                 var result = await context.SaveChangesAsync() > 0;
 
@@ -510,8 +531,8 @@ namespace PlateaumedPro.Services
                 apiResponse.IsSuccess = true;
                 apiResponse.ResponseType = response;
 
-                var details = $"Uploaded Structure Definition: TotalCount {structures.Count} ";
-                await auditTrail.SaveAuditTrail(details, "Structure Definition", "Upload");
+                var details = $"Uploaded Students: TotalCount {structures.Count} ";
+                await auditTrail.SaveAuditTrail(details, "Student", ActionType.Upload,  "");
 
                 return apiResponse;
 

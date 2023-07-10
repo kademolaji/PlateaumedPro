@@ -42,6 +42,8 @@ namespace PlateaumedPro.Common
     {
         public int PageSize { get; set; }
         public int From { get; set; }
+        public string SortOrder { get; set; }
+        public string SortField { get; set; }
         public T Parameter { get; set; }
     }
 
@@ -80,5 +82,13 @@ namespace PlateaumedPro.Common
     }
     public class ProducesResponseStub
     {
+    }
+
+    public class SearchParameter
+    {
+        public string SearchQuery { get; set; }
+        public long Id { get; set; }
+        public string Status { get; set; }
+
     }
 }

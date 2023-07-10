@@ -17,7 +17,7 @@ namespace PlateaumedPro.Services
             this.httpAccessorService = httpAccessorService;
         }
 
-        public void SaveAuditTrail(string details, string endpoint, ActionType actionType, string createdBy)
+        public async Task SaveAuditTrail(string details, string endpoint, ActionType actionType, string createdBy)
         {
             try
             {
