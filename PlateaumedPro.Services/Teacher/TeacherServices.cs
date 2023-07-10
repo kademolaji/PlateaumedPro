@@ -42,9 +42,9 @@ namespace PlateaumedPro.Services
                     return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Surname is required." }, IsSuccess = false };
                 }
                 //TODO: Date should consider leap year
-                if ((DateTime.Now.Year - model.DateOfBirth.Year) > 22)
+                if ((DateTime.Now.Year - model.DateOfBirth.Year) < 21)
                 {
-                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Age cannot be greater than 22" }, IsSuccess = false };
+                    return new ApiResponse<CreateResponse>() { StatusCode = System.Net.HttpStatusCode.BadRequest, ResponseType = new CreateResponse() { Status = false, Id = "", Message = "Age cannot be less than 21" }, IsSuccess = false };
                 }
                 var isExist = await context.Teachers.AnyAsync(x => x.NationalIDNumber == model.NationalIDNumber);
 
